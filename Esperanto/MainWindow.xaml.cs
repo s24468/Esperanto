@@ -1,13 +1,26 @@
-﻿namespace Esperanto
+﻿using System.Windows;
+
+namespace Esperanto
 {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
-  public partial class MainWindow
-  {
-    public MainWindow()
+    public partial class MainWindow
     {
-      InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void ZeroLesson_Click(object sender, RoutedEventArgs e)
+        {
+            ZeroLesson newWindow = new ZeroLesson();
+            newWindow.Show();
+            this.Close();
+        }
+
+        private void FirstLesson_Click(object sender, RoutedEventArgs e)
+        {
+            FirstLesson newWindow = new FirstLesson();
+            newWindow.Show();
+            this.Close();
+        }
     }
-  }
 }

@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Esperanto lessons" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Grid.Column="0" Grid.Row="1" Content="0. Lesson" Click="ZeroLesson_Click" FontSize="30" MaxHeight="50" />
+        <Button Grid.Column="1" Grid.Row="1" Content="1. Lesson" Click="FirstLesson_Click" FontSize="30" MaxHeight="50" />
     </Grid>
+
 </Window>
