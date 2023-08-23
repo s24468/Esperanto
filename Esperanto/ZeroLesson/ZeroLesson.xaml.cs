@@ -6,11 +6,15 @@ namespace Esperanto
     public partial class ZeroLesson : Window
     {
         private readonly MethodHelper _methodHelper;
+        private readonly NumberPractise numberPractise;
 
         public ZeroLesson()
         {
             InitializeComponent();
             _methodHelper = new MethodHelper();
+            numberPractise =
+                new NumberPractise(
+                    @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\numbers.txt");
         }
 
         private void Alfabeto_Click(object sender, RoutedEventArgs e)
@@ -40,7 +44,23 @@ namespace Esperanto
 
         private void PraktikoNombroj_Click(object sender, RoutedEventArgs e)
         {
+            if (numberPractise.isVisible == false)
+            {
+                numberPractise.showNewNumbers(textBlock,textBox);
+                
+            }
+            else
+            {
+                numberPractise.hide(textBlock,textBox);
+                numberPractise.isVisible = false;
+            }
+        }
+
+        private void BackToMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.Close();
         }
     }
 }
-// MessageBox.Show($"Error: ");

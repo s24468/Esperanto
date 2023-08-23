@@ -5,8 +5,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Esperanto"
         mc:Ignorable="d"
-        Title="NewWindow" Height="450" Width="800">
+        Title="NewWindow" Height="660" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+            <Button Content="Domo kaj Familio Vortlisto" Click="DataDomoKajFamilioVortlisto_Click" FontSize="30" />
+            <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click" FontSize="30" />
+        </StackPanel>
+        <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,10,10" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Esperanto" Binding="{Binding Esperanto}" />
+                    <DataGridTextColumn Header="English" Binding="{Binding English}">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Background" Value="{Binding CellBackgroundColor}" />
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </Window>

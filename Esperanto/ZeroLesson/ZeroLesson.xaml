@@ -16,10 +16,15 @@
             <Button Content="Prononco reala ekzemplo" Click="PrononcoRealExamples_Click" FontSize="30" />
             <Button Content="Nombroj" Click="Nombroj_Click" FontSize="30" />
             <Button Content="Praktiko Nombroj" Click="PraktikoNombroj_Click" FontSize="30" />
-            <!-- Add more buttons as needed -->
+            <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click" FontSize="30" />
         </StackPanel>
         <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
             <Image x:Name="popupImage" Visibility="Hidden" Width="400" Height="600"/>
+        </StackPanel>
+        
+        <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+            <TextBlock Name="textBlock" Text="1+1" FontSize="40" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBox Name="textBox" Width="200" Background="Bisque" FontSize="40" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </StackPanel>
     </Grid>
 </Window>

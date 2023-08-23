@@ -84,7 +84,8 @@
         <Compile Include="FirstLesson\FirstLesson.xaml.cs">
           <DependentUpon>FirstLesson.xaml</DependentUpon>
         </Compile>
-        <Compile Include="ZeroLesson\MethodHelper.cs" />
+        <Compile Include="Helper\MethodHelper.cs" />
+        <Compile Include="ZeroLesson\NumberPractise.cs" />
         <Compile Include="ZeroLesson\ZeroLesson.xaml.cs">
           <DependentUpon>ZeroLesson.xaml</DependentUpon>
         </Compile>
@@ -123,6 +124,7 @@
         <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="FirstLesson\Resources\FamilioKajDomo.csv" />
       <Content Include="ZeroLesson\Resources\AlfabetoPhoto.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.txt" />
