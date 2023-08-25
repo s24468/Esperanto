@@ -23,7 +23,7 @@ namespace Esperanto
         {
             if (dataGrid.ItemsSource == null)
             {
-                ReadFamilioCsv(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\FirstLesson\Resources\Familio.csv");
+                ReadFamilioCsv(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\FirstLesson\CsvDataFamilio.cs");
                 dataGrid.ItemsSource = dataArray;
             }
 
@@ -41,7 +41,7 @@ namespace Esperanto
 
         private void ReadFamilioCsv(string path)
         {
-            List<CsvDataFamilio> csvDataList = _helper.ReadCsv(path, values => new CsvDataFamilio(values));
+            List<CsvDataFamilio> csvDataList = _helper.ReadCsv(path, values => new CsvDataFamilio());//values
 
             foreach (var csvData in csvDataList)
             {

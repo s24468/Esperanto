@@ -17,19 +17,11 @@
             <Button Content="Translate the Word" Click="WordTranslate_Click" FontSize="30" />
             <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click" FontSize="30" />
         </StackPanel>
-        <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-            <TextBlock Name="textBlock" Text="1+1" FontSize="40" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <TextBox Name="textBox" Width="200" Background="Bisque" FontSize="40" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        </StackPanel>
-        <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
-            <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Visibility="Visible" VerticalAlignment="Top"
-                      Margin="10,40,10,10" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Esperanto" Binding="{Binding Esperanto}" />
-                    <DataGridTextColumn Header="English" Binding="{Binding English}">
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+            <TextBlock Name="textBlock" Text="1+1" FontSize="40" Visibility="Hidden" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBox Name="textBox" Width="200" Background="Bisque" FontSize="40" Visibility="Hidden"
+                     HorizontalAlignment="Center" VerticalAlignment="Center" />
         </StackPanel>
 
     </Grid>

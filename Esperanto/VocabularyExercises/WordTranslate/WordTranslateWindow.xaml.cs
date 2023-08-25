@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Esperanto.VocabularyExercises.WordTranslate
 {
@@ -11,7 +12,7 @@ namespace Esperanto.VocabularyExercises.WordTranslate
     {
         private Helper _helper;
 
-        private List<CsvDataFamilio> csvDataList;
+        private List<CsvData> csvDataList;
 
         private int score;
 
@@ -22,8 +23,11 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             InitializeComponent();
             _helper = new Helper();
 
-            csvDataList = _helper.ReadCsv(ChoosenPath("Familio"), values => new CsvDataFamilio(values));
+            csvDataList = _helper.ReadCsv(ChoosenPath("Familio"), values => new CsvData(values));
             giveNewWord();
+            KeyDown += CheckEnter_KeyDown;
+
+            
         }
 
         private string ChoosenPath(string buttonName)
@@ -38,6 +42,10 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             {
                 score++;
                 ScoreBoard.Text = "Score " + score;
+            }
+            else
+            {
+                MessageBox.Show("correct answer: " + csvDataList[index].Esperanto);
             }
 
             giveNewWord();
@@ -59,10 +67,36 @@ namespace Esperanto.VocabularyExercises.WordTranslate
 
         private void ChoosePath_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = sender as Button; 
-            string x=  clickedButton.Content.ToString(); 
-            csvDataList = _helper.ReadCsv(ChoosenPath(x), values => new CsvDataFamilio(values));
+            Button clickedButton = sender as Button;
+            string path = clickedButton.Content.ToString();
+            csvDataList = _helper.ReadCsv(ChoosenPath(path), values => new CsvData(values));
+
+            showMessageBoxWithCsvData(path);
+
             giveNewWord();
+            InputBox.Text = "ĉĝĥĵŝŭ";
+        }
+
+        private void showMessageBoxWithCsvData(string path)
+        {
+            StringBuilder tableBuilder = new StringBuilder();
+            tableBuilder.AppendLine("Esperanto\tEnglish"); // Table headers
+
+            foreach (var data in csvDataList)
+            {
+                tableBuilder.AppendLine($"{data.Esperanto}\t{data.English}");
+            }
+
+            string formattedTable = tableBuilder.ToString();
+
+            MessageBox.Show(formattedTable, path); //, MessageBoxButtons.OK, MessageBoxIcon.Information
+        }
+        private void CheckEnter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                CheckButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
         }
     }
 }

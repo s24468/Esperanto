@@ -81,14 +81,15 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="FirstLesson\CsvDataFamilio.cs" />
         <Compile Include="FirstLesson\FirstLesson.xaml.cs">
           <DependentUpon>FirstLesson.xaml</DependentUpon>
         </Compile>
         <Compile Include="Helper\Helper.cs" />
-        <Compile Include="VocabularyExercises\CsvDataFamilio.cs" />
         <Compile Include="VocabularyExercises\VocabularyExercisesWindow.xaml.cs">
           <DependentUpon>VocabularyExercisesWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="VocabularyExercises\WordTranslate\CsvData.cs" />
         <Compile Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml.cs">
           <DependentUpon>WordTranslateWindow.xaml</DependentUpon>
         </Compile>
