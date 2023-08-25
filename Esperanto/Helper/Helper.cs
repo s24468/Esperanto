@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Media;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using NAudio.Wave;
 
 namespace Esperanto
 {
-    public class MethodHelper
+    public class Helper
     {
         public bool isPhotoVisible = false; // Track photo visibility
         public bool isPhotoSoundVisible = false; // Track photo visibility
+        public bool isTableVisible = false;
         public SoundPlayer soundPlayer;
 
         public void showPhoto(string path, Image popupImage)
@@ -54,6 +59,23 @@ namespace Esperanto
             {
                 MessageBox.Show("Sound file not found.");
             }
+        }
+        public List<T> ReadCsv<T>(string filePath, Func<string[], T> createInstance)
+        {
+            const char delimiter = ';';
+            List<T> dataList = new List<T>();
+
+            using (var reader = new StreamReader(filePath, Encoding.UTF8))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(delimiter);
+                    var data = createInstance(values);
+                    dataList.Add(data);
+                }
+            }
+            return dataList;
         }
     }
 }

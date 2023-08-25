@@ -5,13 +5,13 @@ namespace Esperanto
 {
     public partial class ZeroLesson : Window
     {
-        private readonly MethodHelper _methodHelper;
+        private readonly Helper _helper;
         private readonly NumberPractise numberPractise;
 
         public ZeroLesson()
         {
             InitializeComponent();
-            _methodHelper = new MethodHelper();
+            _helper = new Helper();
             numberPractise =
                 new NumberPractise(
                     @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\numbers.txt");
@@ -19,7 +19,7 @@ namespace Esperanto
 
         private void Alfabeto_Click(object sender, RoutedEventArgs e)
         {
-            _methodHelper.showPhoto(
+            _helper.showPhoto(
                 @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\AlfabetoPhoto.jpg",
                 popupImage);
         }
@@ -30,15 +30,15 @@ namespace Esperanto
 
         private async void PrononcoRealExamples_Click(object sender, RoutedEventArgs e)
         {
-            _methodHelper.showPhoto(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\story.jpg",
+            _helper.showPhoto(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\story.jpg",
                 popupImage);
             await Task.Delay(1500); // 3000 milliseconds = 3 seconds
-            _methodHelper.doSound(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\story.mp3");
+            _helper.doSound(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\story.mp3");
         }
 
         private void Nombroj_Click(object sender, RoutedEventArgs e)
         {
-            _methodHelper.showPhoto(
+            _helper.showPhoto(
                 @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\ZeroLesson\Resources\numbers.jpg", popupImage);
         }
 

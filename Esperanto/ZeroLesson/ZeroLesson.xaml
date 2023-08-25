@@ -5,7 +5,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Esperanto"
         mc:Ignorable="d"
-        Title="ZeroLesson" Height="660" Width="800">
+        Title="ZeroLesson" Height="660" Width="800"
+        WindowStartupLocation="CenterScreen">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />

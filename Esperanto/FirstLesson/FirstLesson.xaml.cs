@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Media;
 
@@ -8,57 +9,55 @@ namespace Esperanto
 {
     public partial class FirstLesson : Window
     {
-        private List<CsvData> dataArray = new List<CsvData>();
-        private MethodHelper _methodHelper;
+        private List<CsvDataFamilio> dataArray = new List<CsvDataFamilio>();
+        private Helper _helper;
 
         public FirstLesson()
         {
             InitializeComponent();
-            _methodHelper = new MethodHelper();
+            _helper = new Helper();
         }
 
 
-        private void DataDomoKajFamilioVortlisto_Click(object sender, RoutedEventArgs e)
+        private void FamilioVortlisto_Click(object sender, RoutedEventArgs e)
         {
-            ReadCsv();
-            dataGrid.ItemsSource = dataArray;
-        }
-
-        private void ReadCsv()
-        {
-            using (var reader =
-                   new StreamReader(
-                       @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\FirstLesson\Resources\FamilioKajDomo.csv"))
+            if (dataGrid.ItemsSource == null)
             {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(' ');
+                ReadFamilioCsv(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\FirstLesson\Resources\Familio.csv");
+                dataGrid.ItemsSource = dataArray;
+            }
 
-                    var data = new CsvData
-                    {
-                        Esperanto = values[0],
-                        English = values[1]
-                    };
-                    dataArray.Add(data);
-                    int x = 1;
-                    foreach (var d in dataArray)
-                    {
-                        if (x % 3 == 2)
-                        {
-                            d.CellBackgroundColor = Brushes.Pink; // You can set any Brush here
-                        }
-
-                        if (x % 3 == 0)
-                        {
-                            d.CellBackgroundColor = Brushes.Coral;
-                        }
-
-                        x++;
-                    }
-                }
+            if (!_helper.isTableVisible)
+            {
+                _helper.isTableVisible = true;
+                dataGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                _helper.isTableVisible = false;
+                dataGrid.Visibility = Visibility.Hidden;
             }
         }
+
+        private void ReadFamilioCsv(string path)
+        {
+            List<CsvDataFamilio> csvDataList = _helper.ReadCsv(path, values => new CsvDataFamilio(values));
+
+            foreach (var csvData in csvDataList)
+            {
+                dataArray.Add(csvData);
+            }
+
+            for (var i = 0; i < dataArray.Count; i++)
+            {
+                var d = dataArray[i];
+
+                d.CellBackgroundColor = (i % 3 == 1) ? Brushes.Pink :
+                    (i % 3 == 2) ? Brushes.Coral :
+                    d.CellBackgroundColor;
+            }
+        }
+
 
         private void BackToMainPage_Click(object sender, RoutedEventArgs e)
         {
@@ -66,15 +65,5 @@ namespace Esperanto
             main.Show();
             this.Close();
         }
-    }
-
-    public class CsvData
-    {
-        public string Esperanto { get; set; }
-
-        public string English { get; set; }
-        // Add other properties as needed
-
-        public Brush CellBackgroundColor { get; set; } // Background color property
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Esperanto.VocabularyExercises;
 
 namespace Esperanto
 {
@@ -19,6 +20,13 @@ namespace Esperanto
         private void FirstLesson_Click(object sender, RoutedEventArgs e)
         {
             FirstLesson newWindow = new FirstLesson();
+            newWindow.Show();
+            this.Close();
+        }
+
+        private void VocabularyExercises_Click(object sender, RoutedEventArgs e)
+        {
+            VocabularyExercisesWindow newWindow = new VocabularyExercisesWindow();
             newWindow.Show();
             this.Close();
         }
