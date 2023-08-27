@@ -23,11 +23,9 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             InitializeComponent();
             _helper = new Helper();
 
-            csvDataList = _helper.ReadCsv(ChoosenPath("Familio"), values => new CsvData(values));
+            csvDataList = _helper.ReadCsv(ChoosenPath("VortListo1"), values => new CsvData(values));
             giveNewWord();
             KeyDown += CheckEnter_KeyDown;
-
-            
         }
 
         private string ChoosenPath(string buttonName)
@@ -42,9 +40,14 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             {
                 score++;
                 ScoreBoard.Text = "Score " + score;
+                csvDataList[index].ProbabilityWeight = csvDataList[index].ProbabilityWeight == 1
+                    ? 1
+                    : csvDataList[index].ProbabilityWeight - 1;
             }
             else
             {
+                csvDataList[index].ProbabilityWeight++;
+
                 MessageBox.Show("correct answer: " + csvDataList[index].Esperanto);
             }
 
@@ -54,9 +57,26 @@ namespace Esperanto.VocabularyExercises.WordTranslate
         private void giveNewWord()
         {
             Random random = new Random();
-            index = random.Next(csvDataList.Count);
+
+            List<string> newList = new List<string>();
+
+            foreach (var obj in csvDataList)
+            {
+                for (int i = 0; i < Math.Pow(2,obj.ProbabilityWeight-1); i++)
+                {
+                    newList.Add(obj.English);
+                }
+            }
+
+            int randomIndex = random.Next(0, newList.Count);
+
+            index = csvDataList.FindIndex(data => data.English == newList[randomIndex]); //index which word
+
             BlockWord.Text = csvDataList[index].English;
+            BlockWord.Foreground = csvDataList[index].Color;
         }
+       
+
 
         private void BackToMainPage_Click(object sender, RoutedEventArgs e)
         {
@@ -74,7 +94,7 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             showMessageBoxWithCsvData(path);
 
             giveNewWord();
-            InputBox.Text = "ĉĝĥĵŝŭ";
+            InputBox.Text = "ĈĉĜĝĤĥĴĵŜŝŬŭ";
         }
 
         private void showMessageBoxWithCsvData(string path)
@@ -91,6 +111,7 @@ namespace Esperanto.VocabularyExercises.WordTranslate
 
             MessageBox.Show(formattedTable, path); //, MessageBoxButtons.OK, MessageBoxIcon.Information
         }
+
         private void CheckEnter_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)

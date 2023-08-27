@@ -86,6 +86,9 @@
           <DependentUpon>FirstLesson.xaml</DependentUpon>
         </Compile>
         <Compile Include="Helper\Helper.cs" />
+        <Compile Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml.cs">
+          <DependentUpon>FillTheGapsWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="VocabularyExercises\VocabularyExercisesWindow.xaml.cs">
           <DependentUpon>VocabularyExercisesWindow.xaml</DependentUpon>
         </Compile>
@@ -110,6 +113,7 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml" />
         <Page Include="VocabularyExercises\VocabularyExercisesWindow.xaml" />
         <Page Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml" />
         <Page Include="ZeroLesson\ZeroLesson.xaml" />
@@ -136,9 +140,16 @@
     <ItemGroup>
       <Content Include="FirstLesson\Resources\Domo.csv" />
       <Content Include="FirstLesson\Resources\Familio.csv" />
-      <Content Include="VocabularyExercises\Resources\Domo.csv" />
-      <Content Include="VocabularyExercises\Resources\Familio.csv" />
-      <Content Include="VocabularyExercises\Resources\Pronomo.csv" />
+      <Content Include="OldStuff\Domo.csv" />
+      <Content Include="OldStuff\Esprimoj1.csv" />
+      <Content Include="OldStuff\Familio.csv" />
+      <Content Include="OldStuff\Pronomo.csv" />
+      <Content Include="OldStuff\Verboj1.csv" />
+      <Content Include="VocabularyExercises\Resources\Pronomoj1.csv" />
+      <Content Include="VocabularyExercises\Resources\Pronomoj2.csv" />
+      <Content Include="VocabularyExercises\Resources\VortListo1.csv" />
+      <Content Include="VocabularyExercises\Resources\VortListo2.csv" />
+      <Content Include="VocabularyExercises\Resources\VortListo3.csv" />
       <Content Include="ZeroLesson\Resources\AlfabetoPhoto.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.txt" />

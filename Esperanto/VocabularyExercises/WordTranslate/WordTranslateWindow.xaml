@@ -15,8 +15,12 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <TextBlock Name="BlockWord" Grid.Row="0" Text="WORD" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Name="InputBox" Grid.Row="1" Text="ĉĝĥĵŝŭ" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Name="BlockWord" Grid.Row="0" Text="WORD" FontSize="40" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" TextWrapping="Wrap"
+                   MaxWidth="800"/>
+
+        <TextBox Name="InputBox" Grid.Row="1" Text="ĈĉĜĝĤĥĴĵŜŝŬŭ" FontSize="40" HorizontalAlignment="Center" 
+                 VerticalAlignment="Center" />
         
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -30,9 +34,11 @@
         <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click"  HorizontalAlignment="Right" FontSize="20"  VerticalAlignment="Bottom" Grid.RowSpan="3" />
         <TextBlock Name="ScoreBoard" Grid.Row="0" Text="Score 0" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="3" />
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-            <Button Content="Familio"  Click="ChoosePath_Click" FontSize="10" />
-            <Button Content="Domo"  Click="ChoosePath_Click" FontSize="10" />
-            <Button Content="Pronomo"  Click="ChoosePath_Click" FontSize="10" />
+            <Button Content="Pronomoj1"  Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="Pronomoj2"  Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="VortListo1"  Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="VortListo2"  Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="VortListo3"  Click="ChoosePath_Click" FontSize="14" />
         </StackPanel>
     </Grid>
 </Window>

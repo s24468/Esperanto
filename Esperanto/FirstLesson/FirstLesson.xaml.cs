@@ -23,7 +23,7 @@ namespace Esperanto
         {
             if (dataGrid.ItemsSource == null)
             {
-                ReadFamilioCsv(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\FirstLesson\CsvDataFamilio.cs");
+                ReadFamilioCsv(@"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\OldStuff\Familio.csv");
                 dataGrid.ItemsSource = dataArray;
             }
 
