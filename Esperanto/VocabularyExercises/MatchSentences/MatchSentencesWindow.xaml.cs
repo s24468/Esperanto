@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,25 +13,29 @@ namespace Esperanto.VocabularyExercises.MatchSentences
 {
     public partial class MatchSentencesWindow : Window
     {
-        QuizViewModel _viewModel;
         private Helper _helper;
+        private int numberOfItems = 8;
 
         private List<CsvData> csvDataList;
+        public ObservableCollection<CsvData> Questions { get; set; }
+
+        public ObservableCollection<CsvData> RandomQuestions { get; set; }
+
+        public ObservableCollection<CsvData> RandomAnswers { get; set; }
 
         public MatchSentencesWindow()
         {
             InitializeComponent();
-            // Populate _viewModel.Questions and _viewModel.Answers
             _helper = new Helper();
 
             csvDataList = _helper.ReadCsv(ChoosenPath("Pronomoj1Sentences"), values => new CsvData(values));
-            _viewModel = new QuizViewModel(csvDataList);
+            Questions = new ObservableCollection<CsvData>(csvDataList);
+          
+            var randomTenItems = Questions.OrderBy(x => Guid.NewGuid()).Take(numberOfItems).ToList();
+            RandomQuestions = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
+            RandomAnswers = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
 
-            this.DataContext = _viewModel;
-
-            // Make ObservableCollection update when individual items are modified
-            BindingOperations.EnableCollectionSynchronization(_viewModel.Questions, new object());
-            BindingOperations.EnableCollectionSynchronization(_viewModel.Answers, new object());
+            this.DataContext = this; // Set the data context
         }
 
 
@@ -39,92 +45,101 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                    ".csv";
         }
 
-        private void OnDragEnter(object sender, DragEventArgs e)
+        private void Check_click(object sender, RoutedEventArgs e)
         {
-            if (e.Data.GetDataPresent("dragItem"))
+            bool areItemsInCorrectOrder = true;
+
+            for (int i = 0; i < RandomQuestions.Count; i++)
             {
-                e.Effects = DragDropEffects.Move;
+                if (!RandomQuestions[i].Equals(RandomAnswers[i]))
+                {
+                    areItemsInCorrectOrder = false;
+                    break;
+                }
+            }
+
+            if (areItemsInCorrectOrder)
+            {
+                MessageBox.Show("All items are in the correct order!");
+            }
+            else
+            {
+                MessageBox.Show("Items are not in the correct order.");
             }
         }
 
-        private void OnDrop(object sender, DragEventArgs e)
+        private void MoveUp_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is ListBox listBox)
+            MoveItem(-1);
+        }
+
+        private void MoveDown_Click(object sender, RoutedEventArgs e)
+        {
+            MoveItem(1);
+        }
+
+        private void MoveItem(int direction)
+        {
+            // Validate
+            if (QuestionsList.SelectedItem == null || QuestionsList.SelectedIndex < 0)
+                return;
+
+            int newIndex = QuestionsList.SelectedIndex + direction;
+
+            // Validate New Index
+            if (newIndex < 0 || newIndex >= RandomQuestions.Count)
+                return;
+
+            // Remove and insert
+            CsvData selected = (CsvData)QuestionsList.SelectedItem;
+            RandomQuestions.RemoveAt(QuestionsList.SelectedIndex);
+            RandomQuestions.Insert(newIndex, selected);
+
+            // Reset selection
+            QuestionsList.SelectedIndex = newIndex;
+        }
+
+
+        private void BackToMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            VocabularyExercisesWindow main = new VocabularyExercisesWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void PathOptions_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PathOptions.SelectedItem != null)
             {
-                CsvData draggedItem = e.Data.GetData(typeof(CsvData)) as CsvData;
-                if (listBox.Name == "QuestionsList")
-                {
-                    _viewModel.Answers.Remove(draggedItem);
-                    _viewModel.Questions.Add(draggedItem);
-                }
-                else if (listBox.Name == "AnswersList")
-                {
-                    _viewModel.Questions.Remove(draggedItem);
-                    _viewModel.Answers.Add(draggedItem);
-                }
+                var selectedItem = (PathOptions.SelectedItem as ComboBoxItem).Content as string;
+                ChoosenPath(selectedItem);
             }
         }
 
-        private void OnMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void ChoosePath_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is ListBox listBox)
+            if (PathOptions.SelectedItem != null)
             {
-                var selectedItem = listBox.SelectedItem as CsvData;
-                if (selectedItem != null)
-                {
-                    DragDrop.DoDragDrop(listBox, selectedItem, DragDropEffects.Move);
-                }
+                var selectedItem = (PathOptions.SelectedItem as ComboBoxItem).Content as string;
+                var newPath = ChoosenPath(selectedItem);
+
+                csvDataList = _helper.ReadCsv(newPath, values => new CsvData(values));
+
+                Application.Current.Dispatcher.Invoke(() => {
+                    RandomQuestions.Clear();
+                    RandomAnswers.Clear();
+                    var randomTenItems = Questions.OrderBy(x => Guid.NewGuid()).Take(numberOfItems).ToList();
+                    RandomQuestions = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
+                    RandomAnswers = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
+                
+                    QuestionsList.Items.Refresh();
+                    AnswersList.Items.Refresh();
+                });
+
+                this.DataContext = null;
+                this.DataContext = this;
             }
         }
 
-
-        private void OnCheckAnswersClicked(object sender, RoutedEventArgs e)
-        {
-            _viewModel.CheckAnswers();
-            // Show a MessageBox or update the UI based on the check result
-        }
     }
 }
-
-public class QuizViewModel : INotifyPropertyChanged
-{
-    public ObservableCollection<CsvData> Questions { get; set; }
-    public ObservableCollection<CsvData> Answers { get; set; }
-
-    public QuizViewModel(List<CsvData> csvDataList)
-    {
-        Questions = new ObservableCollection<CsvData>(csvDataList);
-        Answers = new ObservableCollection<CsvData>(
-            new List<CsvData>(csvDataList)); // Clone or Shuffle list here if you want
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    public void CheckAnswers()
-    {
-        bool allCorrect = true;
-        for (int i = 0; i < Questions.Count; i++)
-        {
-            if (Questions[i].Esperanto != Answers[i].Esperanto)
-            {
-                allCorrect = false;
-            }
-        }
-
-        // Show a MessageBox based on the check result
-        if (allCorrect)
-        {
-            MessageBox.Show("All answers are correct!");
-        }
-        else
-        {
-            MessageBox.Show("Some answers are incorrect. Please try again.");
-        }
-    }
-}
-// MessageBox.Show($"{Questions[i].Esperanto}"+"  "+$"{Answers[i].English}");
