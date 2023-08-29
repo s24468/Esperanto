@@ -89,6 +89,9 @@
         <Compile Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml.cs">
           <DependentUpon>FillTheGapsWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml.cs">
+          <DependentUpon>MatchSentencesWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="VocabularyExercises\VocabularyExercisesWindow.xaml.cs">
           <DependentUpon>VocabularyExercisesWindow.xaml</DependentUpon>
         </Compile>
@@ -114,6 +117,7 @@
             <SubType>Code</SubType>
         </Compile>
         <Page Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml" />
+        <Page Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml" />
         <Page Include="VocabularyExercises\VocabularyExercisesWindow.xaml" />
         <Page Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml" />
         <Page Include="ZeroLesson\ZeroLesson.xaml" />
@@ -146,7 +150,10 @@
       <Content Include="OldStuff\Pronomo.csv" />
       <Content Include="OldStuff\Verboj1.csv" />
       <Content Include="VocabularyExercises\Resources\Pronomoj1.csv" />
+      <Content Include="VocabularyExercises\Resources\Pronomoj1Sentences.csv" />
       <Content Include="VocabularyExercises\Resources\Pronomoj2.csv" />
+      <Content Include="VocabularyExercises\Resources\Pronomoj2Sentences.csv" />
+      <Content Include="VocabularyExercises\Resources\SentencesMatch1.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo1.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo2.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo3.csv" />

@@ -8,7 +8,7 @@
         Title="ZeroLesson" Height="660" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -16,7 +16,7 @@
         <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
             <Button Content="Alfabeto kaj Prononco" Click="Alfabeto_Click" FontSize="30" />
             <Button Content="Prononco reala ekzemplo" Click="PrononcoRealExamples_Click" FontSize="30" />
-            <Button Content="Nombroj" Click="Nombroj_Click" FontSize="30" />
+            <Button Content="Nombrodaj" Click="Nombroj_Click" FontSize="30" />
             <Button Content="Praktiko Nombroj" Click="PraktikoNombroj_Click" FontSize="30" />
             <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click" FontSize="30" />
         </StackPanel>

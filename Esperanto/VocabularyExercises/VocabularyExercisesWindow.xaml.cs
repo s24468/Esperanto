@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using Esperanto.VocabularyExercises.FillTheGaps;
+using Esperanto.VocabularyExercises.MatchSentences;
 using Esperanto.VocabularyExercises.WordTranslate;
 
 namespace Esperanto.VocabularyExercises
@@ -20,6 +22,19 @@ namespace Esperanto.VocabularyExercises
         private void WordTranslate_Click(object sender, RoutedEventArgs e)
         {
             WordTranslateWindow main = new WordTranslateWindow();
+            main.Show();
+            this.Close();
+        }
+        private void FillTheGaps_Click(object sender, RoutedEventArgs e)
+        {
+            FillTheGapsWindow main = new FillTheGapsWindow();
+            main.Show();
+            this.Close();
+        }
+
+        private void MatchSentences_Click(object sender, RoutedEventArgs e)
+        {
+            MatchSentencesWindow main = new MatchSentencesWindow();
             main.Show();
             this.Close();
         }

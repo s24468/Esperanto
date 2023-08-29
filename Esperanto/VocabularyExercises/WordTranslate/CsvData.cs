@@ -24,18 +24,10 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             Esperanto = array[0];
             English = array[1];
             ProbabilityWeight = 1;
-            // CellBackgroundColor = ConvertValueToColor(ProbabilityWeight);
             Color = ConvertValueToColor(ProbabilityWeight);
         }
 
-        // Copy constructor
-        public CsvData(CsvData original)
-        {
-            Esperanto = original.Esperanto;
-            English = original.English;
-            ProbabilityWeight = original.ProbabilityWeight;
-            Color = original.Color;
-        }
+      
 
         public static SolidColorBrush ConvertValueToColor(double value)
         {
