@@ -154,9 +154,11 @@
       <Content Include="VocabularyExercises\Resources\Pronomoj2.csv" />
       <Content Include="VocabularyExercises\Resources\Pronomoj2Sentences.csv" />
       <Content Include="VocabularyExercises\Resources\SentencesMatch1.csv" />
+      <Content Include="VocabularyExercises\Resources\SentencesMatch2.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo1.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo2.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo3.csv" />
+      <Content Include="VocabularyExercises\Resources\VortListo4.csv" />
       <Content Include="ZeroLesson\Resources\AlfabetoPhoto.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.txt" />

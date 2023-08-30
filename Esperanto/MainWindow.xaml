@@ -22,6 +22,7 @@
         <Button Grid.Column="0" Grid.Row="1" Content="0. Lesson" Click="ZeroLesson_Click" FontSize="30" MaxHeight="50" />
         <Button Grid.Column="1" Grid.Row="1" Content="1. Lesson" Click="FirstLesson_Click" FontSize="30" MaxHeight="50" />
         <Button Grid.Column="0" Grid.Row="2" Content="Vocabulary Exercises" Click="VocabularyExercises_Click" FontSize="30" MaxHeight="50" />
+        <Button Grid.Column="1" Grid.Row="2" Content="Exit" Click="Exit_Click" FontSize="30" MaxHeight="50" />
     </Grid>
 
 </Window>

@@ -28,9 +28,9 @@ namespace Esperanto.VocabularyExercises.MatchSentences
             InitializeComponent();
             _helper = new Helper();
 
-            csvDataList = _helper.ReadCsv(ChoosenPath("Pronomoj1Sentences"), values => new CsvData(values));
+            csvDataList = _helper.ReadCsv(ChoosenPath("SentencesMatch1"), values => new CsvData(values));
             Questions = new ObservableCollection<CsvData>(csvDataList);
-          
+
             var randomTenItems = Questions.OrderBy(x => Guid.NewGuid()).Take(numberOfItems).ToList();
             RandomQuestions = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
             RandomAnswers = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
@@ -54,19 +54,31 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                 if (!RandomQuestions[i].Equals(RandomAnswers[i]))
                 {
                     areItemsInCorrectOrder = false;
-                    break;
+                    // Change the color for incorrect answers
+                    RandomQuestions[i].Color = new SolidColorBrush(Colors.Red);
+                    RandomAnswers[i].Color = new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    // Reset the color for correct answers (optional)
+                    RandomQuestions[i].Color = new SolidColorBrush(Colors.Green);
+                    RandomAnswers[i].Color = new SolidColorBrush(Colors.Green);
                 }
             }
 
+            QuestionsList.Items.Refresh();
+            AnswersList.Items.Refresh();
+
             if (areItemsInCorrectOrder)
             {
-                MessageBox.Show("All items are in the correct order!");
+                MessageBox.Show("CORRECT!");
             }
             else
             {
-                MessageBox.Show("Items are not in the correct order.");
+                MessageBox.Show("It is incorrect :(");
             }
         }
+
 
         private void MoveUp_Click(object sender, RoutedEventArgs e)
         {
@@ -124,14 +136,16 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                 var newPath = ChoosenPath(selectedItem);
 
                 csvDataList = _helper.ReadCsv(newPath, values => new CsvData(values));
+                Questions = new ObservableCollection<CsvData>(csvDataList);
 
-                Application.Current.Dispatcher.Invoke(() => {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
                     RandomQuestions.Clear();
                     RandomAnswers.Clear();
                     var randomTenItems = Questions.OrderBy(x => Guid.NewGuid()).Take(numberOfItems).ToList();
                     RandomQuestions = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
                     RandomAnswers = new ObservableCollection<CsvData>(randomTenItems.OrderBy(x => Guid.NewGuid()));
-                
+
                     QuestionsList.Items.Refresh();
                     AnswersList.Items.Refresh();
                 });
@@ -140,6 +154,5 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                 this.DataContext = this;
             }
         }
-
     }
 }

@@ -30,5 +30,10 @@ namespace Esperanto
             newWindow.Show();
             this.Close();
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
-}// MessageBox.Show($"Error: ");
+} // MessageBox.Show($"Error: ");

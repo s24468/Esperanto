@@ -39,6 +39,7 @@
             <Button Content="VortListo1"  Click="ChoosePath_Click" FontSize="14" />
             <Button Content="VortListo2"  Click="ChoosePath_Click" FontSize="14" />
             <Button Content="VortListo3"  Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="VortListo4"  Click="ChoosePath_Click" FontSize="14" />
         </StackPanel>
     </Grid>
 </Window>

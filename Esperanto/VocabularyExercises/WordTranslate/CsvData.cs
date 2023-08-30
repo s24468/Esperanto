@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Media;
 
 namespace Esperanto.VocabularyExercises.WordTranslate
@@ -10,12 +11,17 @@ namespace Esperanto.VocabularyExercises.WordTranslate
         public string English { get; set; }
         public int ProbabilityWeight { get; set; }
 
+        private Brush color;
         public Brush Color
         {
-            get { return ConvertValueToColor(ProbabilityWeight); }
+            get { return color; }
             set
             {
-                /* Set the value or perform some action here */
+                if (color != value)
+                {
+                    color = value;
+                    OnPropertyChanged("Color");
+                }
             }
         }
 
@@ -48,6 +54,11 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             }
             return new SolidColorBrush(System.Windows.Media.Color.FromArgb(255, red, green, blue));
         }
-
+        // INotifyPropertyChanged implementation
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
