@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -17,20 +18,48 @@ namespace Esperanto.VocabularyExercises.WordTranslate
         private int score;
 
         private int index;
+        public ObservableCollection<string> ButtonContents { get; set; }
+        private string choice;
 
-        public WordTranslateWindow()
+        public WordTranslateWindow(string choice) //"TY Translate the Word" or "Translate the Word"
         {
+            this.choice = choice;
             InitializeComponent();
+            ButtonContents = new ObservableCollection<string>();
+            if (choice == "Casual")
+            {
+                ButtonContents.Add("Pronomoj1");
+                ButtonContents.Add("Pronomoj2");
+                ButtonContents.Add("VortListo1");
+                ButtonContents.Add("VortListo2");
+                ButtonContents.Add("VortListo3");
+                ButtonContents.Add("VortListo4");
+            }
+            else if (choice == "Teach Yourself")
+            {
+                ButtonContents.Add("Lesson0");
+                ButtonContents.Add("Lesson1");
+                ButtonContents.Add("Lesson2");
+                ButtonContents.Add("XXXXXX");
+                ButtonContents.Add("XXXXXX");
+                ButtonContents.Add("XXXXXX");
+            }
             _helper = new Helper();
 
             csvDataList = _helper.ReadCsv(ChoosenPath("VortListo1"), values => new CsvData(values));
             giveNewWord();
             KeyDown += CheckEnter_KeyDown;
+            DataContext = this;
         }
 
         private string ChoosenPath(string buttonName)
         {
-            return @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\VocabularyExercises\Resources\" + buttonName +
+            if (choice == "Casual")
+            {
+                return @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\VocabularyExercises\Resources\" + buttonName +
+                       ".csv";
+            }
+            return @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\VocabularyExercises\TeachYourselfResources\" + buttonName +
                    ".csv";
         }
 

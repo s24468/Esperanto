@@ -28,19 +28,18 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Name="CheckButton" Content="Check" Click="Check_Click" FontSize="30" HorizontalAlignment="Center"
                     VerticalAlignment="Center" />
-            <!-- <Button Grid.Column="1" Content="Choose path" Click="ChoosePath_Click" FontSize="30" HorizontalAlignment="Center" -->
-            <!--         VerticalAlignment="Center" /> -->
         </Grid>
         <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click"  HorizontalAlignment="Right" FontSize="20"  VerticalAlignment="Bottom" Grid.RowSpan="3" />
         <TextBlock Name="ScoreBoard" Grid.Row="0" Text="Score 0" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="3" />
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-            <Button Content="Pronomoj1"  Click="ChoosePath_Click" FontSize="14" />
-            <Button Content="Pronomoj2"  Click="ChoosePath_Click" FontSize="14" />
-            <Button Content="VortListo1"  Click="ChoosePath_Click" FontSize="14" />
-            <Button Content="VortListo2"  Click="ChoosePath_Click" FontSize="14" />
-            <Button Content="VortListo3"  Click="ChoosePath_Click" FontSize="14" />
-            <Button Content="VortListo4"  Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContents[0]}" Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContents[1]}" Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContents[2]}" Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContents[3]}" Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContents[4]}" Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContents[5]}" Click="ChoosePath_Click" FontSize="14" />
         </StackPanel>
+
     </Grid>
 </Window>
 

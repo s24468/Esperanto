@@ -8,10 +8,10 @@
         Title="Main" Height="500" Width="700"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <!-- <Grid.ColumnDefinitions> -->
+        <!--     <ColumnDefinition Width="*" /> -->
+        <!--     <ColumnDefinition Width="*" /> -->
+        <!-- </Grid.ColumnDefinitions> -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -19,10 +19,12 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Esperanto lessons" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Grid.Column="0" Grid.Row="1" Content="0. Lesson" Click="ZeroLesson_Click" FontSize="30" MaxHeight="50" />
-        <Button Grid.Column="1" Grid.Row="1" Content="1. Lesson" Click="FirstLesson_Click" FontSize="30" MaxHeight="50" />
-        <Button Grid.Column="0" Grid.Row="2" Content="Vocabulary Exercises" Click="VocabularyExercises_Click" FontSize="30" MaxHeight="50" />
-        <Button Grid.Column="1" Grid.Row="2" Content="Exit" Click="Exit_Click" FontSize="30" MaxHeight="50" />
+        <!-- <Button Grid.Column="0" Grid.Row="1" Content="0. Lesson" Click="ZeroLesson_Click" FontSize="30" MaxHeight="50" /> -->
+        <!-- <Button Grid.Column="1" Grid.Row="1" Content="1. Lesson" Click="FirstLesson_Click" FontSize="30" MaxHeight="50" /> -->
+        <Button Grid.Column="0" Grid.Row="1" Content="Vocabulary Exercises" Click="VocabularyExercises_Click" FontSize="30" MaxHeight="50" />
+        <!-- <Button Grid.Column="1" Grid.Row="1" Content="Exit" Click="Exit_Click" FontSize="30" MaxHeight="50" /> -->
+        <Button Content="Reen al la ĉefa paĝo" Click="Exit_Click"  HorizontalAlignment="Right" FontSize="20"  VerticalAlignment="Bottom" Grid.RowSpan="3" />
+
     </Grid>
 
 </Window>

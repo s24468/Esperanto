@@ -97,6 +97,9 @@
         <Compile Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml.cs">
           <DependentUpon>ScrollableMessageBox.xaml</DependentUpon>
         </Compile>
+        <Compile Include="VocabularyExercises\Tables\TablesWindow.xaml.cs">
+          <DependentUpon>TablesWindow.xaml</DependentUpon>
+        </Compile>
         <Compile Include="VocabularyExercises\VocabularyExercisesWindow.xaml.cs">
           <DependentUpon>VocabularyExercisesWindow.xaml</DependentUpon>
         </Compile>
@@ -123,6 +126,7 @@
         <Page Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml" />
         <Page Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml" />
         <Page Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml" />
+        <Page Include="VocabularyExercises\Tables\TablesWindow.xaml" />
         <Page Include="VocabularyExercises\VocabularyExercisesWindow.xaml" />
         <Page Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml" />
         <Page Include="ZeroLesson\ZeroLesson.xaml" />
@@ -166,6 +170,10 @@
       <Content Include="VocabularyExercises\Resources\VortListo4.csv" />
       <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch1.csv" />
       <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch2.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Lesson0.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Lesson1.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Lesson2.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\VortListo1.csv" />
       <Content Include="ZeroLesson\Resources\AlfabetoPhoto.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.txt" />

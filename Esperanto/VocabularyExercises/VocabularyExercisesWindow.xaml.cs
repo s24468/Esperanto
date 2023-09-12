@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Esperanto.VocabularyExercises.FillTheGaps;
 using Esperanto.VocabularyExercises.MatchSentences;
 using Esperanto.VocabularyExercises.WordTranslate;
@@ -21,7 +22,22 @@ namespace Esperanto.VocabularyExercises
 
         private void WordTranslate_Click(object sender, RoutedEventArgs e)
         {
-            WordTranslateWindow main = new WordTranslateWindow();
+            WordTranslateWindow main = null;
+            if (sender is Button clickedButton)
+            {
+                string buttonText = clickedButton.Content as string;
+
+                if (buttonText == "Translate the Word")
+                {
+                    main = new WordTranslateWindow("Casual");
+
+                    // Button 1 was clicked, perform the corresponding action
+                }
+                else if (buttonText == "TY Translate the Word")
+                {
+                    main = new WordTranslateWindow("Teach Yourself"); 
+                }
+            }
             main.Show();
             this.Close();
         }
@@ -33,6 +49,12 @@ namespace Esperanto.VocabularyExercises
         }
 
         private void MatchSentences_Click(object sender, RoutedEventArgs e)
+        {
+            MatchSentencesWindow main = new MatchSentencesWindow();
+            main.Show();
+            this.Close();
+        }
+        private void Tables_Click(object sender, RoutedEventArgs e)
         {
             MatchSentencesWindow main = new MatchSentencesWindow();
             main.Show();
