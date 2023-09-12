@@ -86,16 +86,20 @@
           <DependentUpon>FirstLesson.xaml</DependentUpon>
         </Compile>
         <Compile Include="Helper\Helper.cs" />
+        <Compile Include="VocabularyExercises\ComparisonComparer.cs" />
+        <Compile Include="VocabularyExercises\CsvData.cs" />
         <Compile Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml.cs">
           <DependentUpon>FillTheGapsWindow.xaml</DependentUpon>
         </Compile>
         <Compile Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml.cs">
           <DependentUpon>MatchSentencesWindow.xaml</DependentUpon>
         </Compile>
+        <Compile Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml.cs">
+          <DependentUpon>ScrollableMessageBox.xaml</DependentUpon>
+        </Compile>
         <Compile Include="VocabularyExercises\VocabularyExercisesWindow.xaml.cs">
           <DependentUpon>VocabularyExercisesWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="VocabularyExercises\WordTranslate\CsvData.cs" />
         <Compile Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml.cs">
           <DependentUpon>WordTranslateWindow.xaml</DependentUpon>
         </Compile>
@@ -118,6 +122,7 @@
         </Compile>
         <Page Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml" />
         <Page Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml" />
+        <Page Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml" />
         <Page Include="VocabularyExercises\VocabularyExercisesWindow.xaml" />
         <Page Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml" />
         <Page Include="ZeroLesson\ZeroLesson.xaml" />
@@ -159,6 +164,8 @@
       <Content Include="VocabularyExercises\Resources\VortListo2.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo3.csv" />
       <Content Include="VocabularyExercises\Resources\VortListo4.csv" />
+      <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch1.csv" />
+      <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch2.csv" />
       <Content Include="ZeroLesson\Resources\AlfabetoPhoto.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.txt" />

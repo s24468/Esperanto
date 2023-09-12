@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using Esperanto.VocabularyExercises.WordTranslate;
 
+// VortListoSentencesMatch1
 namespace Esperanto.VocabularyExercises.MatchSentences
 {
     public partial class MatchSentencesWindow : Window
     {
         private Helper _helper;
         private int numberOfItems = 8;
+        private string currentPath = "";
 
         private List<CsvData> csvDataList;
         public ObservableCollection<CsvData> Questions { get; set; }
@@ -54,17 +54,18 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                 if (!RandomQuestions[i].Equals(RandomAnswers[i]))
                 {
                     areItemsInCorrectOrder = false;
-                    // Change the color for incorrect answers
                     RandomQuestions[i].Color = new SolidColorBrush(Colors.Red);
                     RandomAnswers[i].Color = new SolidColorBrush(Colors.Red);
                 }
                 else
                 {
-                    // Reset the color for correct answers (optional)
                     RandomQuestions[i].Color = new SolidColorBrush(Colors.Green);
                     RandomAnswers[i].Color = new SolidColorBrush(Colors.Green);
                 }
             }
+
+            CsvData.SortObservableCollectionByColour(RandomQuestions);
+            CsvData.SortObservableCollectionByColour(RandomAnswers);
 
             QuestionsList.Items.Refresh();
             AnswersList.Items.Refresh();
@@ -72,10 +73,6 @@ namespace Esperanto.VocabularyExercises.MatchSentences
             if (areItemsInCorrectOrder)
             {
                 MessageBox.Show("CORRECT!");
-            }
-            else
-            {
-                MessageBox.Show("It is incorrect :(");
             }
         }
 
@@ -124,7 +121,8 @@ namespace Esperanto.VocabularyExercises.MatchSentences
             if (PathOptions.SelectedItem != null)
             {
                 var selectedItem = (PathOptions.SelectedItem as ComboBoxItem).Content as string;
-                ChoosenPath(selectedItem);
+                currentPath = selectedItem;
+
             }
         }
 
@@ -154,5 +152,25 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                 this.DataContext = this;
             }
         }
+
+        private void Show_Click(object sender, RoutedEventArgs e)
+        {
+            List<CsvData> csvDataListTemp =
+                _helper.ReadCsv(ChoosenPath("VortListo"+currentPath) , values => new CsvData(values));
+          
+            // Constructing the string to display
+            string message = "";
+            foreach (var item in csvDataListTemp)
+            {
+                message += $"{item.Esperanto} - {item.English}\n";
+            }
+
+            // Displaying in custom dialog
+            var scrollableMessageBox = new ScrollableMessageBox(message,ChoosenPath("VortListo"+currentPath));
+            scrollableMessageBox.ShowDialog();
+            
+            
+        }
     }
+    
 }

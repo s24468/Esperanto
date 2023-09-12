@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Media;
 
 namespace Esperanto.VocabularyExercises.WordTranslate
@@ -32,8 +34,27 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             ProbabilityWeight = 1;
             Color = ConvertValueToColor(ProbabilityWeight);
         }
+        public static int CompareCsvDataByColor(CsvData a, CsvData b)
+        {
+            // Assuming SolidColorBrush, but the logic can be adapted for other brushes
+            var colorA = (a.Color as SolidColorBrush)?.Color;
+            var colorB = (b.Color as SolidColorBrush)?.Color;
 
-      
+            if (colorA == Colors.Red && colorB != Colors.Red) return -1; // Red comes first
+            if (colorA != Colors.Red && colorB == Colors.Red) return 1;  // Green comes later
+            return 0; // Equal, or both are red/green
+        }
+        public static void SortObservableCollectionByColour(ObservableCollection<CsvData> collection)
+        {
+            var sortedList = collection.OrderBy(x => x, new ComparisonComparer<CsvData>(CsvData.CompareCsvDataByColor))
+                .ToList();
+
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                collection.Move(collection.IndexOf(sortedList[i]), i);
+            }
+        }
+
 
         public static SolidColorBrush ConvertValueToColor(double value)
         {
