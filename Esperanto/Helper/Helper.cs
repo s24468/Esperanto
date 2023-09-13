@@ -60,6 +60,7 @@ namespace Esperanto
                 MessageBox.Show("Sound file not found.");
             }
         }
+
         public List<T> ReadCsv<T>(string filePath, Func<string[], T> createInstance)
         {
             const char delimiter = ';';
@@ -75,6 +76,7 @@ namespace Esperanto
                     dataList.Add(data);
                 }
             }
+
             return dataList;
         }
     }

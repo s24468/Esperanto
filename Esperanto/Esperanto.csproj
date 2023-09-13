@@ -97,6 +97,7 @@
         <Compile Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml.cs">
           <DependentUpon>ScrollableMessageBox.xaml</DependentUpon>
         </Compile>
+        <Compile Include="VocabularyExercises\Tables\HelperTables.cs" />
         <Compile Include="VocabularyExercises\Tables\TablesWindow.xaml.cs">
           <DependentUpon>TablesWindow.xaml</DependentUpon>
         </Compile>
@@ -170,6 +171,8 @@
       <Content Include="VocabularyExercises\Resources\VortListo4.csv" />
       <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch1.csv" />
       <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch2.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Korelativoj.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\KorelativojEnRakonto.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\Lesson0.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\Lesson1.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\Lesson2.csv" />

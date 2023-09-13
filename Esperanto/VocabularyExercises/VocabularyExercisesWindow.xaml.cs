@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Esperanto.VocabularyExercises.FillTheGaps;
 using Esperanto.VocabularyExercises.MatchSentences;
+using Esperanto.VocabularyExercises.Tables;
 using Esperanto.VocabularyExercises.WordTranslate;
 
 namespace Esperanto.VocabularyExercises
@@ -56,7 +57,7 @@ namespace Esperanto.VocabularyExercises
         }
         private void Tables_Click(object sender, RoutedEventArgs e)
         {
-            MatchSentencesWindow main = new MatchSentencesWindow();
+            TablesWindow main = new TablesWindow();
             main.Show();
             this.Close();
         }

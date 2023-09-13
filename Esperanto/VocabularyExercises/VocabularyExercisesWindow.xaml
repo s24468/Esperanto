@@ -26,8 +26,8 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" >
             <Button Content="TY Translate the Word" Click="WordTranslate_Click" FontSize="30" Background="Orange" />
-            <Button Content="TY Fill the Gaps" Click="FillTheGaps_Click" FontSize="30" Background="Orange"/>
-            <Button Content="TY Match Sentences" Click="MatchSentences_Click" FontSize="30" Background="Orange"/>
+            <!-- <Button Content="TY Fill the Gaps" Click="FillTheGaps_Click" FontSize="30" Background="Orange"/> -->
+            <!-- <Button Content="TY Match Sentences" Click="MatchSentences_Click" FontSize="30" Background="Orange"/> -->
             <Button Content="TY Tables" Click="Tables_Click" FontSize="30" Background="Orange"/>
         </StackPanel>
         <Button Grid.Column="1" Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click"  HorizontalAlignment="Right" FontSize="20"  VerticalAlignment="Bottom" Grid.RowSpan="3" />
