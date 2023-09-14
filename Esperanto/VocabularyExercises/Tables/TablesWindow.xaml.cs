@@ -1,153 +1,177 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Text.RegularExpressions;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using Esperanto.VocabularyExercises.WordTranslate;
 
 namespace Esperanto.VocabularyExercises.Tables
 {
     public partial class TablesWindow : Window
     {
-        private Helper _helper;
+        private readonly HelperData _helperData;
 
-        private List<CsvData> csvDataList;
+        private List<CsvData> _csvDataList;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private int score;
+        private int _score;
+        private int _index;
+        public string currentChosenButtons;
 
-        private int index;
-        public ObservableCollection<string> ButtonContents { get; set; }
-        private HelperTables _helperTables;
+        private ObservableCollection<string> _buttonContentsLeft;
+        private ObservableCollection<string> _buttonContentsRight;
 
-        public TablesWindow() //"TY Translate the Word" or "Translate the Word"
+        public ObservableCollection<string> ButtonContentsLeft
+        {
+            get => _buttonContentsLeft;
+            set
+            {
+                _buttonContentsLeft = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<string> ButtonContentsRight
+        {
+            get => _buttonContentsRight;
+            set
+            {
+                _buttonContentsRight = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private readonly HelperTables _helperTables;
+
+
+        public TablesWindow()
         {
             InitializeComponent();
-            ButtonContents = new ObservableCollection<string>();
-
-            ButtonContents.Add("Korelativoj");
-            ButtonContents.Add("KorelativojEnRakonto");
-
-            _helper = new Helper();
+            DataContext = this;
+          
+            ButtonContentsLeft = new ObservableCollection<string>
+            {
+                "Tabloj",
+                "Rakonto"
+            };
+            ButtonContentsRight = new ObservableCollection<string>
+            {
+                "Initial",
+                "Initial2",
+            };
+            _helperData = new HelperData();
 
             _helperTables = new HelperTables();
 
-            csvDataList = _helper.ReadCsv(ChoosenPath("Korelativoj"), values => new CsvData(values));
+            comboBox.ItemsSource = _helperTables.getOptionsForTable();
 
-            giveNewWord();
-            KeyDown += CheckEnter_KeyDown;
-
-            DataContext = this;
+            _csvDataList = _helperData.ReadCsv(_helperTables.ChoosenPath(@"Tabloj\Korelativoj"),
+                values => new CsvData(values));
+            currentChosenButtons = @"Tabloj\";
+            GiveNewWord();
+            HelperWindow.SetupEnterKeyToClick(this, CheckButton);
         }
 
-        private string ChoosenPath(string buttonName)
-        {
-            return @"C:\Users\Jarek\RiderProjects\Esperanto\Esperanto\VocabularyExercises\TeachYourselfResources\" +
-                   buttonName +
-                   ".csv";
-        }
 
         private void Check_Click(object sender, RoutedEventArgs e)
         {
-            if (csvDataList[index].Esperanto == InputBox.Text)
+            var currentData = _csvDataList[_index];
+            if (_csvDataList[_index].Esperanto == InputBox.Text)
             {
-                score++;
-                ScoreBoard.Text = "Score " + score;
-                csvDataList[index].ProbabilityWeight = csvDataList[index].ProbabilityWeight == 1
-                    ? 1
-                    : csvDataList[index].ProbabilityWeight - 1;
+                ScoreBoard.Text = $"Score {++_score}";
+                currentData.ProbabilityWeight = Math.Max(1, currentData.ProbabilityWeight - 1);
             }
             else
             {
-                csvDataList[index].ProbabilityWeight++;
-
-                MessageBox.Show("correct answer: " + csvDataList[index].Esperanto);
+                _csvDataList[_index].ProbabilityWeight++;
+                MessageBox.Show("correct answer: " + _csvDataList[_index].Esperanto);
             }
 
-            giveNewWord();
-        }
-
-        private void giveNewWord()
-        {
-            Random random = new Random();
-
-            List<string> newList = new List<string>();
-
-            foreach (var obj in csvDataList)
-            {
-                for (int i = 0; i < Math.Pow(2, obj.ProbabilityWeight - 1); i++)
-                {
-                    newList.Add(obj.English);
-                }
-            }
-
-
-            int randomIndex = random.Next(0, newList.Count);
-
-
-            index = csvDataList.FindIndex(data => data.English == newList[randomIndex]); //index which word
-
-            BlockWord.Text = csvDataList[index].English;
-            BlockWord.Foreground = csvDataList[index].Color;
-        }
-
-
-        private void BackToMainPage_Click(object sender, RoutedEventArgs e)
-        {
-            VocabularyExercisesWindow main = new VocabularyExercisesWindow();
-            main.Show();
-            this.Close();
+            GiveNewWord();
         }
 
         private void ChoosePath_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = sender as Button;
-            string path = clickedButton.Content.ToString();
-            csvDataList = _helper.ReadCsv(ChoosenPath(path), values => new CsvData(values));
-
-            // showMessageBoxWithCsvData(path);
-
-            _helperTables.showMessageBoxWithCsvData(path,csvDataList);
-
-            giveNewWord();
-            InputBox.Text = "ĈĉĜĝĤĥĴĵŜŝŬŭ";
-        }
-        private void ChoosePathStory_Click(object sender, RoutedEventArgs e)
-        {
-            Button clickedButton = sender as Button;
-            string path = clickedButton.Content.ToString();
-            csvDataList = _helper.ReadCsv(ChoosenPath(path), values => new CsvData(values));
-
-            // showMessageBoxWithCsvData(path);
-            _helperTables.showMessageBoxWithCsvData(path,csvDataList);
-
-            giveNewWord();
-            InputBox.Text = "ĈĉĜĝĤĥĴĵŜŝŬŭ";
-        }
-        // private void showMessageBoxWithCsvData(string path)
-        // {
-        //     StringBuilder tableBuilder = new StringBuilder();
-        //     tableBuilder.AppendLine("Esperanto\tEnglish"); // Table headers
-        //
-        //     foreach (var data in csvDataList)
-        //     {
-        //         tableBuilder.AppendLine($"{data.Esperanto}\t{data.English}");
-        //     }
-        //
-        //     string formattedTable = tableBuilder.ToString();
-        //
-        //     MessageBox.Show(formattedTable, path); //, MessageBoxButtons.OK, MessageBoxIcon.Information
-        // }
-        //
-
-        private void CheckEnter_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
+            HelperTables.ComboBoxItemModel selectedItem = (HelperTables.ComboBoxItemModel)comboBox.SelectedItem;
+            string path = currentChosenButtons + @"\" + clickedButton.Content ;
+            if (selectedItem != null)
             {
-                CheckButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                path += selectedItem.Text;
             }
+
+            if (!File.Exists(_helperTables.ChoosenPath(path)))
+            {
+                return;
+            }
+            _csvDataList = _helperData.ReadCsv(_helperTables.ChoosenPath(path), values => new CsvData(values));
+
+            ShowMessageBoxWithCsvData(path);
+
+            GiveNewWord();
+            InputBox.Text = "ĈĉĜĝĤĥĴĵŜŝŬŭ";
+        }
+
+        private void ChooseButtons_Click(object sender, RoutedEventArgs e)
+        {
+            var buttonContent = (string)((Button)sender).Content;
+            currentChosenButtons = buttonContent;
+            switch (buttonContent)
+            {
+                case "Tabloj":
+                    ButtonContentsRight[0] = "Korelativoj";
+                    ButtonContentsRight[1] = "Konjunkcioj";
+                    break;
+                case "Rakonto":
+                    ButtonContentsRight[0] = "KorelativojEnRakonto";
+                    ButtonContentsRight[1] = "c";
+                    break;
+            }
+        }
+
+        private void GiveNewWord()
+        {
+            var random = new Random();
+            var newList = _csvDataList
+                .SelectMany(obj => Enumerable.Repeat(obj.English, (int)Math.Pow(2, obj.ProbabilityWeight - 1)))
+                .ToList();
+            var randomIndex = random.Next(0, newList.Count);
+            _index = _csvDataList.FindIndex(data => data.English == newList[randomIndex]); //index which word
+            BlockWord.Text = _csvDataList[_index].English.Replace("@", "\n");
+            BlockWord.Foreground = _csvDataList[_index].Color;
+        }
+
+        private void ShowMessageBoxWithCsvData(string path)
+        {
+            var table = string.Join("\n", _csvDataList.Select(data => $"{data.Esperanto}\t{data.English}"));
+            MessageBox.Show($"Esperanto\tEnglish\n{table}", path);
+        }
+
+        private void BackToMainPage_Click(object sender, RoutedEventArgs e)
+        {
+            HelperWindow.NavigateToWindow<VocabularyExercisesWindow>(this);
+        }
+
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void ShowMeAllNames_Click(object sender, RoutedEventArgs e)
+        {
+            string[] fileNames = Directory.GetFiles("C:\\Users\\Jarek\\RiderProjects\\Esperanto\\Esperanto\\VocabularyExercises\\TeachYourselfResources\\Tabloj");
+            String x = "";
+            foreach (string fileName in fileNames)
+            {
+                x+= Path.GetFileName(fileName) + Environment.NewLine;
+            }
+
+            MessageBox.Show(x);
         }
     }
 }

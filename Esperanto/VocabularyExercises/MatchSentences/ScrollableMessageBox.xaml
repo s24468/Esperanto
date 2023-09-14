@@ -18,8 +18,8 @@
                   GotFocus="ComboBox_GotFocus"
                   IsDropDownOpen="True"/>
         <Grid>
-            <Button Name="buttonSave" Content="Save to CSV" Click="ButtonSave_Click" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
-            <TextBox Name="textBoxInput" Width="300" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,20,0,0"/>
+            <!-- <Button Name="buttonSave" Content="Save to CSV" Click="ButtonSave_Click" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/> -->
+            <TextBox Name="textBoxInput" Width="300" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="130,20,0,0"/>
         </Grid>
     </Grid>
 </Window>

@@ -85,7 +85,8 @@
         <Compile Include="FirstLesson\FirstLesson.xaml.cs">
           <DependentUpon>FirstLesson.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Helper\Helper.cs" />
+        <Compile Include="Helper\HelperData.cs" />
+        <Compile Include="Helper\HelperWindow.cs" />
         <Compile Include="VocabularyExercises\ComparisonComparer.cs" />
         <Compile Include="VocabularyExercises\CsvData.cs" />
         <Compile Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml.cs">
@@ -171,11 +172,15 @@
       <Content Include="VocabularyExercises\Resources\VortListo4.csv" />
       <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch1.csv" />
       <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch2.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Korelativoj.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\KorelativojEnRakonto.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\Lesson0.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\Lesson1.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\Lesson2.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\old_stuff" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Rakonto\KorelativojEnRakonto.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\Konjunkcioj.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\Korelativoj.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\KorelativojLeft.csv" />
+      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\KorelativojRight.csv" />
       <Content Include="VocabularyExercises\TeachYourselfResources\VortListo1.csv" />
       <Content Include="ZeroLesson\Resources\AlfabetoPhoto.jpg" />
       <Content Include="ZeroLesson\Resources\numbers.jpg" />

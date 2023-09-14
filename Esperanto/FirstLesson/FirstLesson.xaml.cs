@@ -10,12 +10,12 @@ namespace Esperanto
     public partial class FirstLesson : Window
     {
         private List<CsvDataFamilio> dataArray = new List<CsvDataFamilio>();
-        private Helper _helper;
+        private HelperData _helperData;
 
         public FirstLesson()
         {
             InitializeComponent();
-            _helper = new Helper();
+            _helperData = new HelperData();
         }
 
 
@@ -27,21 +27,21 @@ namespace Esperanto
                 dataGrid.ItemsSource = dataArray;
             }
 
-            if (!_helper.isTableVisible)
+            if (!_helperData.isTableVisible)
             {
-                _helper.isTableVisible = true;
+                _helperData.isTableVisible = true;
                 dataGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                _helper.isTableVisible = false;
+                _helperData.isTableVisible = false;
                 dataGrid.Visibility = Visibility.Hidden;
             }
         }
 
         private void ReadFamilioCsv(string path)
         {
-            List<CsvDataFamilio> csvDataList = _helper.ReadCsv(path, values => new CsvDataFamilio());//values
+            List<CsvDataFamilio> csvDataList = _helperData.ReadCsv(path, values => new CsvDataFamilio());//values
 
             foreach (var csvData in csvDataList)
             {

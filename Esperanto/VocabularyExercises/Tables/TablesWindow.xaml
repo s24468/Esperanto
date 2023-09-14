@@ -31,9 +31,15 @@
         <Button Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click"  HorizontalAlignment="Right" FontSize="20"  VerticalAlignment="Bottom" Grid.RowSpan="3" />
         <TextBlock Name="ScoreBoard" Grid.Row="0" Text="Score 0" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.RowSpan="3" />
         <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-            <Button Content="{Binding ButtonContents[0]}" Click="ChoosePath_Click" FontSize="14" />
-            <Button Content="{Binding ButtonContents[1]}" Click="ChoosePathStory_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContentsLeft[0]}" Click="ChooseButtons_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContentsLeft[1]}" Click="ChooseButtons_Click" FontSize="14" />
         </StackPanel>
-
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10">
+            <!-- <TextBox Name="FileNamesTextBox"  Margin="10,10,0,0" VerticalAlignment="Top" TextWrapping="Wrap" /> -->
+            <Button Content="SHOW ME ALL NAMES" Click="ShowMeAllNames_Click" FontSize="14" />
+            <ComboBox x:Name="comboBox" Width="150" DisplayMemberPath="Text" SelectedValuePath="Text"/>
+            <Button Content="{Binding ButtonContentsRight[0]}" Click="ChoosePath_Click" FontSize="14" />
+            <Button Content="{Binding ButtonContentsRight[1]}" Click="ChoosePath_Click" FontSize="14" />
+        </StackPanel>
     </Grid>
 </Window>

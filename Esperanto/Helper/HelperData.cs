@@ -12,7 +12,7 @@ using NAudio.Wave;
 
 namespace Esperanto
 {
-    public class Helper
+    public class HelperData
     {
         public bool isPhotoVisible = false; // Track photo visibility
         public bool isPhotoSoundVisible = false; // Track photo visibility
