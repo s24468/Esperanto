@@ -11,7 +11,7 @@ namespace Esperanto.VocabularyExercises.WordTranslate
 {
     public partial class WordTranslateWindow : Window
     {
-        private HelperData _helperData;
+        private DataHelper _dataHelper;
 
         private List<CsvData> csvDataList;
 
@@ -44,9 +44,9 @@ namespace Esperanto.VocabularyExercises.WordTranslate
                 ButtonContents.Add("XXXXXX");
                 ButtonContents.Add("XXXXXX");
             }
-            _helperData = new HelperData();
+            _dataHelper = new DataHelper();
 
-            csvDataList = _helperData.ReadCsv(ChoosenPath("VortListo1"), values => new CsvData(values));
+            csvDataList = _dataHelper.ReadCsv(ChoosenPath("VortListo1"), values => new CsvData(values));
             giveNewWord();
             KeyDown += CheckEnter_KeyDown;
             DataContext = this;
@@ -118,7 +118,7 @@ namespace Esperanto.VocabularyExercises.WordTranslate
             Button clickedButton = sender as Button;
             string path = clickedButton.Content.ToString();
 
-            csvDataList = _helperData.ReadCsv(ChoosenPath(path), values => new CsvData(values));
+            csvDataList = _dataHelper.ReadCsv(ChoosenPath(path), values => new CsvData(values));
 
             showMessageBoxWithCsvData(path);
 

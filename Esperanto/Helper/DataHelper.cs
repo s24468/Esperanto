@@ -12,13 +12,33 @@ using NAudio.Wave;
 
 namespace Esperanto
 {
-    public class HelperData
+    public class DataHelper
     {
         public bool isPhotoVisible = false; // Track photo visibility
         public bool isPhotoSoundVisible = false; // Track photo visibility
         public bool isTableVisible = false;
         public SoundPlayer soundPlayer;
 
+        
+        public List<T> ReadCsv<T>(string filePath, Func<string[], T> createInstance)
+        {
+            const char delimiter = ';';
+            List<T> dataList = new List<T>();
+
+            using (var reader = new StreamReader(filePath, Encoding.UTF8))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(delimiter);
+                    var data = createInstance(values);
+                    dataList.Add(data);
+                }
+            }
+
+            return dataList;
+        }
+        
         public void showPhoto(string path, Image popupImage)
         {
             popupImage.Visibility = Visibility.Visible;
@@ -61,23 +81,5 @@ namespace Esperanto
             }
         }
 
-        public List<T> ReadCsv<T>(string filePath, Func<string[], T> createInstance)
-        {
-            const char delimiter = ';';
-            List<T> dataList = new List<T>();
-
-            using (var reader = new StreamReader(filePath, Encoding.UTF8))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(delimiter);
-                    var data = createInstance(values);
-                    dataList.Add(data);
-                }
-            }
-
-            return dataList;
-        }
     }
 }

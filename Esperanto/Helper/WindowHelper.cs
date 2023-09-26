@@ -5,7 +5,7 @@ using Esperanto.VocabularyExercises;
 
 namespace Esperanto
 {
-    public class HelperWindow
+    public class WindowHelper
     {
         public static void NavigateToWindow<T>(Window currentWindow) where T : Window, new()
         {

@@ -1,4 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using Esperanto.Arto;
+using Esperanto.Rakonto;
+using Esperanto.Tabloj;
+using Esperanto.Traduko;
 using Esperanto.VocabularyExercises;
 
 namespace Esperanto
@@ -10,30 +15,34 @@ namespace Esperanto
             InitializeComponent();
         }
 
-        private void ZeroLesson_Click(object sender, RoutedEventArgs e)
+        private void VortlistoWindow_Click(object sender, RoutedEventArgs e)
         {
-            ZeroLesson newWindow = new ZeroLesson();
+            var newWindow = new VortlistoWindow();
             newWindow.Show();
             this.Close();
         }
-
-        private void FirstLesson_Click(object sender, RoutedEventArgs e)
+        private void ArtoWindow_Click(object sender, RoutedEventArgs e)
         {
-            FirstLesson newWindow = new FirstLesson();
+            var newWindow = new ArtoWindow();
             newWindow.Show();
             this.Close();
         }
-
-        private void VocabularyExercises_Click(object sender, RoutedEventArgs e)
+        private void TablojWindow_Click(object sender, RoutedEventArgs e)
         {
-            VocabularyExercisesWindow newWindow = new VocabularyExercisesWindow();
+            var newWindow = new TablojWindow();
             newWindow.Show();
             this.Close();
         }
-
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
+        private void RakontoWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new RakontoWindow();
+            newWindow.Show();
+            this.Close();
+        }
     }
-} // MessageBox.Show($"Error: ");
+} 

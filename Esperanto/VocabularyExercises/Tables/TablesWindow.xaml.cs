@@ -13,7 +13,7 @@ namespace Esperanto.VocabularyExercises.Tables
 {
     public partial class TablesWindow : Window
     {
-        private readonly HelperData _helperData;
+        private readonly DataHelper _dataHelper;
 
         private List<CsvData> _csvDataList;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -21,6 +21,7 @@ namespace Esperanto.VocabularyExercises.Tables
         private int _score;
         private int _index;
         public string currentChosenButtons;
+        public string currentSentenceTranslation;
 
         private ObservableCollection<string> _buttonContentsLeft;
         private ObservableCollection<string> _buttonContentsRight;
@@ -63,17 +64,17 @@ namespace Esperanto.VocabularyExercises.Tables
                 "Initial",
                 "Initial2",
             };
-            _helperData = new HelperData();
+            _dataHelper = new DataHelper();
 
             _helperTables = new HelperTables();
 
             comboBox.ItemsSource = _helperTables.getOptionsForTable();
 
-            _csvDataList = _helperData.ReadCsv(_helperTables.ChoosenPath(@"Tabloj\Korelativoj"),
+            _csvDataList = _dataHelper.ReadCsv(_helperTables.ChoosenPath(@"Tabloj\Korelativoj"),
                 values => new CsvData(values));
             currentChosenButtons = @"Tabloj\";
             GiveNewWord();
-            HelperWindow.SetupEnterKeyToClick(this, CheckButton);
+            WindowHelper.SetupEnterKeyToClick(this, CheckButton);
         }
 
 
@@ -108,7 +109,7 @@ namespace Esperanto.VocabularyExercises.Tables
             {
                 return;
             }
-            _csvDataList = _helperData.ReadCsv(_helperTables.ChoosenPath(path), values => new CsvData(values));
+            _csvDataList = _dataHelper.ReadCsv(_helperTables.ChoosenPath(path), values => new CsvData(values));
 
             ShowMessageBoxWithCsvData(path);
 
@@ -128,7 +129,7 @@ namespace Esperanto.VocabularyExercises.Tables
                     break;
                 case "Rakonto":
                     ButtonContentsRight[0] = "KorelativojEnRakonto";
-                    ButtonContentsRight[1] = "c";
+                    ButtonContentsRight[1] = "KonjunkciojEnRakonto";
                     break;
             }
         }
@@ -141,7 +142,12 @@ namespace Esperanto.VocabularyExercises.Tables
                 .ToList();
             var randomIndex = random.Next(0, newList.Count);
             _index = _csvDataList.FindIndex(data => data.English == newList[randomIndex]); //index which word
-            BlockWord.Text = _csvDataList[_index].English.Replace("@", "\n");
+            string[] parts = _csvDataList[_index].English.Split('@');
+            if (parts.Length > 1)
+            {
+                currentSentenceTranslation = parts[1];
+            }
+            BlockWord.Text = parts[0];
             BlockWord.Foreground = _csvDataList[_index].Color;
         }
 
@@ -153,7 +159,7 @@ namespace Esperanto.VocabularyExercises.Tables
 
         private void BackToMainPage_Click(object sender, RoutedEventArgs e)
         {
-            HelperWindow.NavigateToWindow<VocabularyExercisesWindow>(this);
+            WindowHelper.NavigateToWindow<VocabularyExercisesWindow>(this);
         }
 
 
@@ -170,8 +176,18 @@ namespace Esperanto.VocabularyExercises.Tables
             {
                 x+= Path.GetFileName(fileName) + Environment.NewLine;
             }
+            string[] fileNames2 = Directory.GetFiles("C:\\Users\\Jarek\\RiderProjects\\Esperanto\\Esperanto\\VocabularyExercises\\TeachYourselfResources\\Rakonto");
+            String y = "";
+            foreach (string fileName in fileNames2)
+            {
+                y+= Path.GetFileName(fileName) + Environment.NewLine;
+            }
+            MessageBox.Show(x+"\n"+y);
+        }
 
-            MessageBox.Show(x);
+        private void ShowMeAllTranslationOfSentence_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(currentSentenceTranslation);
         }
     }
 }

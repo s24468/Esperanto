@@ -12,7 +12,7 @@ namespace Esperanto.VocabularyExercises.FillTheGaps
 {
     public partial class FillTheGapsWindow : Window
     {
-        private HelperData _helperData;
+        private DataHelper _dataHelper;
 
         private List<CsvData> csvDataList;
 
@@ -23,9 +23,9 @@ namespace Esperanto.VocabularyExercises.FillTheGaps
         public FillTheGapsWindow()
         {
             InitializeComponent();
-            _helperData = new HelperData();
+            _dataHelper = new DataHelper();
 
-            csvDataList = _helperData.ReadCsv(ChoosenPath("Pronomoj1Sentences"), values => new CsvData(values));
+            csvDataList = _dataHelper.ReadCsv(ChoosenPath("Pronomoj1Sentences"), values => new CsvData(values));
             giveNewWord();
             KeyDown += CheckEnter_KeyDown;
         }
@@ -91,7 +91,7 @@ namespace Esperanto.VocabularyExercises.FillTheGaps
         {
             Button clickedButton = sender as Button;
             string path = clickedButton.Content.ToString();
-            csvDataList = _helperData.ReadCsv(ChoosenPath(path), values => new CsvData(values));
+            csvDataList = _dataHelper.ReadCsv(ChoosenPath(path), values => new CsvData(values));
 
             showMessageBoxWithCsvData(path);
 

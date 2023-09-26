@@ -12,7 +12,7 @@ namespace Esperanto.VocabularyExercises.MatchSentences
 {
     public partial class MatchSentencesWindow : Window
     {
-        private HelperData _helperData;
+        private DataHelper _dataHelper;
         private int numberOfItems = 8;
         private string currentPath = "";
 
@@ -26,9 +26,9 @@ namespace Esperanto.VocabularyExercises.MatchSentences
         public MatchSentencesWindow()
         {
             InitializeComponent();
-            _helperData = new HelperData();
+            _dataHelper = new DataHelper();
 
-            csvDataList = _helperData.ReadCsv(ChoosenPath("SentencesMatch1"), values => new CsvData(values));
+            csvDataList = _dataHelper.ReadCsv(ChoosenPath("SentencesMatch1"), values => new CsvData(values));
             Questions = new ObservableCollection<CsvData>(csvDataList);
 
             var randomTenItems = Questions.OrderBy(x => Guid.NewGuid()).Take(numberOfItems).ToList();
@@ -133,7 +133,7 @@ namespace Esperanto.VocabularyExercises.MatchSentences
                 var selectedItem = (PathOptions.SelectedItem as ComboBoxItem).Content as string;
                 var newPath = ChoosenPath(selectedItem);
 
-                csvDataList = _helperData.ReadCsv(newPath, values => new CsvData(values));
+                csvDataList = _dataHelper.ReadCsv(newPath, values => new CsvData(values));
                 Questions = new ObservableCollection<CsvData>(csvDataList);
 
                 Application.Current.Dispatcher.Invoke(() =>
@@ -156,7 +156,7 @@ namespace Esperanto.VocabularyExercises.MatchSentences
         private void Show_Click(object sender, RoutedEventArgs e)
         {
             List<CsvData> csvDataListTemp =
-                _helperData.ReadCsv(ChoosenPath("VortListo"+currentPath) , values => new CsvData(values));
+                _dataHelper.ReadCsv(ChoosenPath("VortListo"+currentPath) , values => new CsvData(values));
           
             // Constructing the string to display
             string message = "";
