@@ -9,24 +9,11 @@
         Background="LightSeaGreen">
 
     <Window.Resources>
-
-        <Style x:Key="StylishButton" TargetType="Button">
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Padding" Value="12,8" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="BorderThickness" Value="3" />
-            <Setter Property="FontFamily" Value="Segoe Script" />
-
-            <Setter Property="Background" Value="OrangeRed" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkBlue" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Helper/ElementsStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
 
@@ -36,9 +23,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Name="BlockWord" Grid.Row="0" Grid.Column="0" Text="WORD" FontSize="40" HorizontalAlignment="Center"
-                   VerticalAlignment="Center" TextWrapping="Wrap"
-                   MaxWidth="800" />
+        <TextBlock Style="{StaticResource TextBlockStyle}" Name="BlockWord" Grid.Row="0" Text="WORD"/>
+
 
         <TextBlock Name="ScoreBoard" Grid.Row="0" Text="Score 0" FontSize="20" HorizontalAlignment="Right"
                    VerticalAlignment="Top" Grid.RowSpan="3" />
@@ -47,9 +33,9 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
+            <TextBox Style="{StaticResource TextBoxStyle}" Name="InputBox" Text="ĈĉĜĝĤĥĴĵŜŝŬŭ"/>
 
-            <TextBox Name="InputBox" Text="ĈĉĜĝĤĥĴĵŜŝŬŭ" FontSize="40" HorizontalAlignment="Center"
-                     VerticalAlignment="Center" Background="LightSeaGreen" />
             <StackPanel Grid.Column="1" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ComboBox x:Name="ComboBox" Width="150" DisplayMemberPath="Text" SelectedValuePath="Text" MaxDropDownHeight="100"/>

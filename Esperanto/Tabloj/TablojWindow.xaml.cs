@@ -32,7 +32,9 @@ public partial class TablojWindow
 
         _csvDataList = _dataHelper.ReadCsv(ComboBoxHelper.GetCorrectPath("Konjunkcioj", ".csv"),
             values => new CsvData(values));
+      
         GiveNewWord();
+
         WindowHelper.SetupEnterKeyToClick(this, CheckButton);
     }
 
@@ -50,8 +52,9 @@ public partial class TablojWindow
             _csvDataList[_index].ProbabilityWeight++;
             MessageBox.Show("correct answer: " + _csvDataList[_index].Esperanto);
         }
-
         GiveNewWord();
+
+
     }
 
     private void ChangeCurrentText_Click(object sender, RoutedEventArgs e)
@@ -66,7 +69,11 @@ public partial class TablojWindow
         InputBox.Text = "ĈĉĜĝĤĥĴĵŜŝŬŭ";
     }
 
-
+    
+    private void BackToMainPage_Click(object sender, RoutedEventArgs e)
+    {
+        WindowHelper.NavigateToWindow<VocabularyExercisesWindow>(this);
+    }
     private void GiveNewWord()
     {
         var random = new Random();
@@ -74,13 +81,9 @@ public partial class TablojWindow
             .SelectMany(obj => Enumerable.Repeat(obj.English, (int)Math.Pow(2, obj.ProbabilityWeight - 1)))
             .ToList();
         var randomIndex = random.Next(0, newList.Count);
-        _index = _csvDataList.FindIndex(data => data.English == newList[randomIndex]); //index which word
-        BlockWord.Text = _csvDataList[_index].English;
-        BlockWord.Foreground = _csvDataList[_index].Color;
-    }
-    
-    private void BackToMainPage_Click(object sender, RoutedEventArgs e)
-    {
-        WindowHelper.NavigateToWindow<VocabularyExercisesWindow>(this);
+        
+        var index =_csvDataList.FindIndex(data => data.English == newList[randomIndex]);
+        BlockWord.Text = _csvDataList[index].English;
+        BlockWord.Foreground = _csvDataList[index].Color;
     }
 }

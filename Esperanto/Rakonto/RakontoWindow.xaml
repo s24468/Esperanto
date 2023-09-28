@@ -9,24 +9,11 @@
         Background="LightSeaGreen">
 
     <Window.Resources>
-
-        <Style x:Key="StylishButton" TargetType="Button">
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Padding" Value="12,8" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="BorderThickness" Value="3" />
-            <Setter Property="FontFamily" Value="Segoe Script" />
-
-            <Setter Property="Background" Value="OrangeRed" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkBlue" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Helper/ElementsStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
 
@@ -58,8 +45,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Name="InputBox" Text="ĈĉĜĝĤĥĴĵŜŝŬŭ" FontSize="40" HorizontalAlignment="Center"
-                     VerticalAlignment="Center" Background="LightSeaGreen" />
+            <TextBox Style="{StaticResource TextBoxStyle}" Name="InputBox" Text="ĈĉĜĝĤĥĴĵŜŝŬŭ"/>
+
             <StackPanel Grid.Column="1" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ComboBox x:Name="ComboBox" Width="150" DisplayMemberPath="Text" SelectedValuePath="Text" MaxDropDownHeight="100"/>

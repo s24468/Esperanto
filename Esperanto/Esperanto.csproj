@@ -119,6 +119,7 @@
         <Compile Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml.cs">
           <DependentUpon>WordTranslateWindow.xaml</DependentUpon>
         </Compile>
+        <Page Include="Helper\ElementsStyle.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -172,6 +173,8 @@
       <Content Include="Resources\Rakonto\Rak_Additional1.csv" />
       <Content Include="Resources\Rakonto\Rak_Lesson1.csv" />
       <Content Include="Resources\Rakonto\Rak_Lesson2.csv" />
+      <Content Include="Resources\Rakonto\Rak_Lesson3.csv" />
+      <Content Include="Resources\Tabloj\Afiksoj.csv" />
       <Content Include="Resources\Tabloj\DiurnoPartoj.csv" />
       <Content Include="Resources\Tabloj\Konjunkcioj.csv" />
       <Content Include="Resources\Tabloj\Korelativoj.csv" />
