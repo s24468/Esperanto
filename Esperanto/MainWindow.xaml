@@ -8,25 +8,13 @@
         WindowStartupLocation="CenterScreen"
         Background="LightSeaGreen">
 
+    
     <Window.Resources>
-
-        <Style x:Key="StylishButton" TargetType="Button">
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="FontSize" Value="16" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Padding" Value="12,8" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="BorderThickness" Value="3" />
-            <Setter Property="FontFamily" Value="Segoe Script" />
-
-            <Setter Property="Background" Value="OrangeRed" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkBlue" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Helper/XMLHelper/ElementsStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
@@ -57,6 +45,8 @@
                     Click="ArtoWindow_Click" FontSize="20" />
             <Button Grid.Row="1" Grid.Column="0" Style="{StaticResource StylishButton}" Content="Rakonto"
                     Click="RakontoWindow_Click" FontSize="20" />
+            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource StylishButton}" Content="Reguloj"
+                    Click="RegulojWindow_Click" FontSize="20" />
         </Grid>
 
         <Button Grid.Row="0" Grid.RowSpan="3"  Content="Reen al la ĉefa paĝo" Click="Exit_Click" HorizontalAlignment="Right"

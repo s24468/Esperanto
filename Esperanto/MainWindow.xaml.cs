@@ -5,6 +5,7 @@ using Esperanto.Rakonto;
 using Esperanto.Tabloj;
 using Esperanto.Traduko;
 using Esperanto.VocabularyExercises;
+using Esperanto.Windows.RegulojWindow;
 
 namespace Esperanto
 {
@@ -45,5 +46,11 @@ namespace Esperanto
             this.Close();
         }
 
+        private void RegulojWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var newWindow = new RegulojWindow();
+            newWindow.Show();
+            this.Close();
+        }
     }
 } 

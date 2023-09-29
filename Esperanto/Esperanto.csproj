@@ -82,44 +82,31 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
-        <Compile Include="Helper\ComboBoxHelper.cs" />
-        <Compile Include="Helper\DataHelper.cs" />
-        <Compile Include="Helper\MessageBoxHelper.cs" />
-        <Compile Include="Helper\WindowHelper.cs" />
-        <Compile Include="Arto\ArtoWindow.xaml.cs">
+        <Compile Include="Helper\CSHelper\ComboBoxHelper.cs" />
+        <Compile Include="Helper\CSHelper\DataHelper.cs" />
+        <Compile Include="Helper\CSHelper\MessageBoxHelper.cs" />
+        <Compile Include="Helper\CSHelper\WindowHelper.cs" />
+        <Compile Include="Other\ComparisonComparer.cs" />
+        <Compile Include="Other\CsvData.cs" />
+        <Compile Include="Windows\Arto\ArtoWindow.xaml.cs">
           <DependentUpon>ArtoWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Rakonto\RakontoWindow.xaml.cs">
+        <Compile Include="Windows\Rakonto\RakontoWindow.xaml.cs">
           <DependentUpon>RakontoWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Tabloj\TablojWindow.xaml.cs">
+        <Compile Include="Windows\RegulojWindow\Afiksoj\AfiksojWindow.xaml.cs">
+          <DependentUpon>AfiksojWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Windows\RegulojWindow\RegulojWindow.xaml.cs">
+          <DependentUpon>RegulojWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Windows\Tabloj\TablojWindow.xaml.cs">
           <DependentUpon>TablojWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="VortListo\VortlistoWindow.xaml.cs">
+        <Compile Include="Windows\VortListo\VortlistoWindow.xaml.cs">
           <DependentUpon>VortlistoWindow.xaml</DependentUpon>
         </Compile>
-        <Compile Include="VocabularyExercises\ComparisonComparer.cs" />
-        <Compile Include="VocabularyExercises\CsvData.cs" />
-        <Compile Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml.cs">
-          <DependentUpon>FillTheGapsWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml.cs">
-          <DependentUpon>MatchSentencesWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml.cs">
-          <DependentUpon>ScrollableMessageBox.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="VocabularyExercises\Tables\HelperTables.cs" />
-        <Compile Include="VocabularyExercises\Tables\TablesWindow.xaml.cs">
-          <DependentUpon>TablesWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="VocabularyExercises\VocabularyExercisesWindow.xaml.cs">
-          <DependentUpon>VocabularyExercisesWindow.xaml</DependentUpon>
-        </Compile>
-        <Compile Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml.cs">
-          <DependentUpon>WordTranslateWindow.xaml</DependentUpon>
-        </Compile>
-        <Page Include="Helper\ElementsStyle.xaml" />
+        <Page Include="Helper\XMLHelper\ElementsStyle.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -132,16 +119,12 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
-        <Page Include="Arto\ArtoWindow.xaml" />
-        <Page Include="Rakonto\RakontoWindow.xaml" />
-        <Page Include="Tabloj\TablojWindow.xaml" />
-        <Page Include="VortListo\VortlistoWindow.xaml" />
-        <Page Include="VocabularyExercises\FillTheGaps\FillTheGapsWindow.xaml" />
-        <Page Include="VocabularyExercises\MatchSentences\MatchSentencesWindow.xaml" />
-        <Page Include="VocabularyExercises\MatchSentences\ScrollableMessageBox.xaml" />
-        <Page Include="VocabularyExercises\Tables\TablesWindow.xaml" />
-        <Page Include="VocabularyExercises\VocabularyExercisesWindow.xaml" />
-        <Page Include="VocabularyExercises\WordTranslate\WordTranslateWindow.xaml" />
+        <Page Include="Windows\Arto\ArtoWindow.xaml" />
+        <Page Include="Windows\Rakonto\RakontoWindow.xaml" />
+        <Page Include="Windows\RegulojWindow\Afiksoj\AfiksojWindow.xaml" />
+        <Page Include="Windows\RegulojWindow\RegulojWindow.xaml" />
+        <Page Include="Windows\Tabloj\TablojWindow.xaml" />
+        <Page Include="Windows\VortListo\VortlistoWindow.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -187,29 +170,9 @@
       <Content Include="Resources\Vortlisto\Lesson1.csv" />
       <Content Include="Resources\Vortlisto\Lesson2.csv" />
       <Content Include="Resources\Vortlisto\Lesson3.csv" />
-      <Content Include="VocabularyExercises\Resources\Pronomoj1.csv" />
-      <Content Include="VocabularyExercises\Resources\Pronomoj1Sentences.csv" />
-      <Content Include="VocabularyExercises\Resources\Pronomoj2.csv" />
-      <Content Include="VocabularyExercises\Resources\Pronomoj2Sentences.csv" />
-      <Content Include="VocabularyExercises\Resources\SentencesMatch1.csv" />
-      <Content Include="VocabularyExercises\Resources\SentencesMatch2.csv" />
-      <Content Include="VocabularyExercises\Resources\VortListo1.csv" />
-      <Content Include="VocabularyExercises\Resources\VortListo2.csv" />
-      <Content Include="VocabularyExercises\Resources\VortListo3.csv" />
-      <Content Include="VocabularyExercises\Resources\VortListo4.csv" />
-      <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch1.csv" />
-      <Content Include="VocabularyExercises\Resources\VortListoSentencesMatch2.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Lesson0.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Lesson1.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Lesson2.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\old_stuff" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Rakonto\KorelativojEnRakonto.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Rakonto\KonjunkciojEnRakonto.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\Konjunkcioj.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\Korelativoj.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\KorelativojLeft.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\Tabloj\KorelativojRight.csv" />
-      <Content Include="VocabularyExercises\TeachYourselfResources\VortListo1.csv" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Helper\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

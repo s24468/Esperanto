@@ -1,0 +1,43 @@
+﻿<Window x:Class="Esperanto.Windows.RegulojWindow.RegulojWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        mc:Ignorable="d"
+        Title="RegulojWindow" Height="500" Width="700"
+        WindowStartupLocation="CenterScreen"
+        Background="LightSeaGreen">
+
+   
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Helper/XMLHelper/ElementsStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" Style="{StaticResource StylishButton}" Content="Afiksoj"
+                    Click="AfiksojWindow_Click" FontSize="20" />
+            
+        </Grid>
+
+        <Button Grid.Row="0" Grid.RowSpan="2"  Content="Reen al la ĉefa paĝo" Click="BackToMainPage_Click" HorizontalAlignment="Right"
+                FontSize="18" VerticalAlignment="Bottom" Style="{StaticResource StylishButton}" />
+    </Grid>
+</Window>
